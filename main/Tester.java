@@ -132,12 +132,23 @@ public class Tester
 	 */
 	private void process()
 	{
-		List list;
-		List emptyList;
+		autoTestAdd();
+		System.out.println();
+		System.out.println();
 		
-		//-----------------------------//
-		list = new List(); //reset the list
-		emptyList = new List();
+		autoTestFind();
+		System.out.println();
+		System.out.println();
+		
+		autoTestRemove();
+	}
+
+	/**
+	 * Automatically tests adding elements to the list
+	 */
+	private void autoTestAdd()
+	{
+		List list = new List();
 		
 		System.out.println("AddToList, print:");
 		list.print();
@@ -159,13 +170,14 @@ public class Tester
 			System.out.println("null IDs are not allowed");
 		}
 		list.print();
-		System.out.println();
-		System.out.println();
-		
-		//-----------------------------//
-		list = new List();
-		emptyList = new List();
-		
+	}
+	
+	/**
+	 * Automatically tests finding elements in the list
+	 */
+	private void autoTestFind()
+	{
+		List list = new List();		
 		list.addToList("a", 10);
 		list.addToList("b", 20);
 		list.addToList("c", 30);
@@ -193,14 +205,16 @@ public class Tester
 		System.out.println();
 		
 		System.out.println("--Empty list");
-		emptyList.findByID("This list is empty. Any ID will do");
-		
-		System.out.println();
-		System.out.println();
-		
-		//-----------------------------//
-		list = new List();
-		emptyList = new List();
+		List emptyList = new List();
+		emptyList.findByID("This list is empty. Any ID will do");		
+	}
+
+	/**
+	 * Automatically tests removing elements from the list
+	 */
+	private void autoTestRemove()
+	{
+		List list = new List();
 		
 		System.out.println("removeByID");
 		
@@ -239,46 +253,7 @@ public class Tester
 		System.out.println();
 		
 		System.out.println("--Empty list");
+		List emptyList = new List();
 		emptyList.removeByID("This list is empty. Any ID will do");
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
