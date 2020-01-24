@@ -95,7 +95,7 @@ public class List
      * Display the mark associated with the specified ID, or an error message if there is no such ID.
      * Note that if there are multiple elements with the same ID, this function will return the first - 
      * the one that was added last
-     * @param id
+     * @param id the id of the student to remove
      */
     public void findByID(String id)
     {
@@ -117,4 +117,71 @@ public class List
     	}
     	System.out.println("There is no student with the specified id");
     }
+    
+    /**
+     * Search the list for the student associated with the specified ID, removes it, and prints a message
+     * representing success, or an error message if there is no such ID. Note that if there are multiple
+     * elements with the same ID, this function will remove the first - the one that was added last 
+     * @param id the id of the student to remove
+     */
+    public void removeByID(String id)
+    {
+    	if(head == null)
+    	{
+    		System.out.println("The list is empty");
+    		return;
+    	}
+    	
+    	ListNode lastNode = null;
+    	ListNode currentNode = head;
+    	while(currentNode != null)
+    	{
+    		if(currentNode.getID().equals(id))
+    		{
+    			if(lastNode != null) 
+    				lastNode.setNext(currentNode.getNext());
+    			else //lastNode will be null if the head of the list has the specified id
+    				head = head.getNext();
+    			
+    			System.out.println("The specified node has been removed");
+    			return;
+    		}
+    		
+    		lastNode = currentNode;
+    		currentNode = currentNode.getNext();
+    	}
+    	System.out.println("There is no student with the specified id");
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

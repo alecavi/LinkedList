@@ -23,8 +23,8 @@ public class Tester
 		tester.initialise();
 		
 		System.out.println("Input \"add\" to add a student to the list, \"print\" to print the list, "
-				+ "\"find\" to find a student in the list, \"test\" to run the automated tests, or "
-				+ "\"exit\" to exit");
+				+ "\"find\" to find a student in the list, \"remove\" to remove a student from the list, "
+				+ "\"test\" to run the automated tests, or \"exit\" to exit");
 		boolean exit = false;
 		while(!exit)
 		{
@@ -41,6 +41,9 @@ public class Tester
 			case "find":
 				tester.findInList();
 				break;
+			case "remove":
+				tester.removeFromList();
+				break;
 			case "test":
 				tester.process();
 				break;
@@ -50,8 +53,8 @@ public class Tester
 			default:
 				System.out.println("Command not recognised");
 				System.out.println("Input \"add\" to add a student to the list, \"print\" to print the list, "
-						+ "\"find\" to find a student in the list, \"test\" to run the automated tests, or "
-						+ "\"exit\" to exit");
+						+ "\"find\" to find a student in the list, \"remove\" to remove a student from the list, "
+						+ "\"test\" to run the automated tests, or \"exit\" to exit");
 				break;
 			}
 		}
@@ -77,11 +80,10 @@ public class Tester
 			else 
 			{
 				System.out.println("Please input an integer mark");
+				scanner.nextLine(); 
+				//If the first input is not an int then hasNextInt won't advance past it and this loop will become infinite, 
+				//unless we remove it.
 			}
-			
-			scanner.nextLine(); 
-			//If the first input is not an int then hasNextInt won't advance past it and this loop will become infinite, 
-			//unless we remove the line.		
 		}
 		list.addToList(id, mark);
 	}
@@ -106,7 +108,19 @@ public class Tester
 	}
 	
 	/**
-	 * Set up for testing - initialise fields and prepare them to be used
+	 * Prompts the user for an ID, then attempts to find the corresponding student in the list and
+	 * remove it. Finally, prints a success or failure message
+	 */
+	private void removeFromList()
+	{
+		System.out.println("Input the ID of the student to add");
+		String id = scanner.nextLine();
+		list.removeByID(id);
+	}
+	
+	
+	/**
+	 * Sets up for testing - initialise fields and prepare them to be used
 	 */
 	private void initialise()
 	{
@@ -114,11 +128,16 @@ public class Tester
 	}
 	
 	/**
-	 * Perform the automated testing process
+	 * Performs the automated testing process
 	 */
 	private void process()
 	{
-		List list = new List();
+		List list;
+		List emptyList;
+		
+		//-----------------------------//
+		list = new List(); //reset the list
+		emptyList = new List();
 		
 		System.out.println("AddToList, print:");
 		list.print();
@@ -143,6 +162,18 @@ public class Tester
 		System.out.println();
 		System.out.println();
 		
+		//-----------------------------//
+		list = new List();
+		emptyList = new List();
+		
+		list.addToList("a", 10);
+		list.addToList("b", 20);
+		list.addToList("c", 30);
+		
+		System.out.println("--Initial list:");
+		list.print();
+		System.out.println();
+		
 		System.out.println("findByID");
 		System.out.println("--Normal list:");
 		System.out.println("----Middle:");
@@ -162,7 +193,92 @@ public class Tester
 		System.out.println();
 		
 		System.out.println("--Empty list");
-		List emptyList = new List();
 		emptyList.findByID("This list is empty. Any ID will do");
+		
+		System.out.println();
+		System.out.println();
+		
+		//-----------------------------//
+		list = new List();
+		emptyList = new List();
+		
+		System.out.println("removeByID");
+		
+		list.addToList("a", 10);
+		list.addToList("b", 20);
+		list.addToList("c", 30);
+		
+		System.out.println("--Initial list:");
+		list.print();
+		System.out.println();
+		
+		System.out.println("--Normal list:");
+		System.out.println("----Middle:");
+		list.removeByID("b");
+		list.print();
+		System.out.println();
+		
+		System.out.println("----Beginning:");
+		list.removeByID("c");
+		list.print();
+		System.out.println();
+		
+		System.out.println("----End:");
+		list.removeByID("a");
+		list.print();
+		System.out.println();
+		
+		System.out.println("--Absent:");
+		list.removeByID("niudnbauebdiub");
+		list.print();
+		System.out.println();
+		
+		System.out.println("--Null ID:");
+		list.removeByID(null);
+		list.print();
+		System.out.println();
+		
+		System.out.println("--Empty list");
+		emptyList.removeByID("This list is empty. Any ID will do");
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
