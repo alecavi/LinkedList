@@ -20,8 +20,9 @@ public class Tester
 		tester.initialise();
 		
 		System.out.println("Input \"add\" to add a student to the list, \"print\" to print the list, "
-				+ "\"find\" to find a student in the list, \"remove\" to remove a student from the list, "
-				+ "\"test\" to run the automated tests, or \"exit\" to exit");
+				+ "\"find\" to find a student in the list, \"delete\" to delete a student from the list, "
+				+ "\"removeFirst\" to remove the first element from the list, \"size\" to print the size of the list"
+				+ " \"test\" to run the automated tests, or \"exit\" to exit");
 		boolean exit = false;
 		while(!exit)
 		{
@@ -38,11 +39,17 @@ public class Tester
 			case "find":
 				tester.findInList();
 				break;
-			case "remove":
-				tester.removeFromList();
+			case "delete":
+				tester.deleteFromList();
+				break;
+			case "removefirst":
+				tester.removeFirstFromList();
 				break;
 			case "test":
 				tester.process();
+				break;
+			case "size":
+				tester.printSize();
 				break;
 			case "exit":
 				exit = true;
@@ -112,12 +119,35 @@ public class Tester
 	
 	/**
 	 * Prompts the user for a value, then attempts to find a node storing that value in the list and
-	 * remove it. Finally, prints a success or failure message
+	 * delete it. Finally, prints a success or failure message
 	 */
-	private void removeFromList()
+	private void deleteFromList()
 	{
 		System.out.println("Input the value to remove");
-		list.remove(promptForInt());
+		list.delete(promptForInt());
+	}
+	
+	/**
+	 * Removes the first element from the list and prints it
+	 */
+	private void removeFirstFromList()
+	{
+		try
+		{
+			System.out.println("The first element has been removed. Value: " + list.removeFirst());
+		}
+		catch(EmptyListException e)
+		{
+			System.out.println("The list is empty");
+		}
+	}
+	
+	/**
+	 * Prints the size of the list
+	 */
+	private void printSize()
+	{
+		System.out.println(list.size());
 	}
 	
 	
@@ -134,6 +164,10 @@ public class Tester
 	 */
 	private void process()
 	{
+		autoTestSize();
+		System.out.println();
+		System.out.println();
+		
 		autoTestAdd();
 		System.out.println();
 		System.out.println();
@@ -142,9 +176,33 @@ public class Tester
 		System.out.println();
 		System.out.println();
 		
-		autoTestRemove();
+		autoTestDelete();
+		System.out.println();
+		System.out.println();
+		
+		autoTestRemoveFirst();
 	}
 
+	private void autoTestSize()
+	{
+		System.out.println("size:");
+		List list = new List();
+		System.out.println("Empty list: " + list.size());
+		
+		list.addToList(10);
+		list.addToList(20);
+		list.addToList(90);
+		
+		System.out.println("after adding 3 elements: " + list.size());
+		
+		list.delete(10);
+		System.out.println("after removing 1 element: " + list.size());
+		
+		list.delete(0);
+		System.out.println("after removing 1 nonexistent element: " + list.size());
+		
+	}
+	
 	/**
 	 * Automatically tests adding elements to the list
 	 */
@@ -204,13 +262,13 @@ public class Tester
 	}
 
 	/**
-	 * Automatically tests removing elements from the list
+	 * Automatically tests deleting elements from the list
 	 */
-	private void autoTestRemove()
+	private void autoTestDelete()
 	{
 		List list = new List();
 		
-		System.out.println("remove:");
+		System.out.println("delete:");
 		
 		list.addToList(10);
 		list.addToList(20);
@@ -222,22 +280,22 @@ public class Tester
 		
 		System.out.println("--Normal list:");
 		System.out.println("----Middle:");
-		list.remove(20);
+		list.delete(20);
 		list.print();
 		System.out.println();
 		
 		System.out.println("----Beginning:");
-		list.remove(30);
+		list.delete(30);
 		list.print();
 		System.out.println();
 		
 		System.out.println("----End:");
-		list.remove(10);
+		list.delete(10);
 		list.print();
 		System.out.println();
 		
 		System.out.println("--Absent:");
-		list.remove(17312377);
+		list.delete(17312377);
 		list.print();
 		System.out.println();
 		
@@ -245,6 +303,37 @@ public class Tester
 		
 		System.out.println("--Empty list");
 		List emptyList = new List();
-		emptyList.remove(1341341);
+		emptyList.delete(1341341);
+	}
+	
+	/**
+	 * Automatically tests removing the first element from the list
+	 */
+	private void autoTestRemoveFirst()
+	{
+		List list = new List();
+		
+		System.out.println("removeFirst:");
+		
+		list.addToList(10);
+		list.addToList(20);
+		list.addToList(30);
+		
+		System.out.println("Removed element: " + list.removeFirst());
+		System.out.println("Removed element: " + list.removeFirst());
+		System.out.println();
+		list.print();
+		
+		System.out.println("Removed element: " + list.removeFirst());
+		try
+		{
+			System.out.println("Removed element: " + list.removeFirst());
+			System.out.println("This line should never be executed");
+		}
+		catch(EmptyListException e)
+		{
+			System.out.println("EmptyListException: attempt to remove from an empty list");
+		}
+		list.print();
 	}
 }

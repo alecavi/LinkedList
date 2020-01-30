@@ -13,6 +13,7 @@ public class List
     private ListNode head; // used to hold a reference to an instance of a ListNode object
     // which will be the first item in the list, i.e. at the 'head'
     // of the list
+    private int size;
 
     /**
      * Default constructor. Initialise fields to default values.
@@ -21,6 +22,7 @@ public class List
     {
         // set the list to be empty, i.e. not referring to anything valid yet
         head = null;
+        size = 0;
     }
 
     /**
@@ -48,6 +50,17 @@ public class List
     {
         head = newHead;
     }
+    
+    /**
+     * Return the amount of elements in this list
+     * 
+     * @return the size of the list
+     */
+    //Named after java.utils.List.size()
+    public int size()
+    {
+    	return size;
+    }
 
     /**
      * Add a new node containing the specified value to the start of the list
@@ -66,7 +79,7 @@ public class List
         	node.setNext(head);
         	head = node;
         }
-        
+        size++;
     }
 
     /**
@@ -121,7 +134,7 @@ public class List
      * nodes with the same value, this function will remove the first - the one that was added last 
      * @param id the id of the student to remove
      */
-    public void remove(int value)
+    public void delete(int value)
     {
     	if(head == null)
     	{
@@ -141,6 +154,7 @@ public class List
     				head = head.getNext();
     			
     			System.out.println("The specified node (value: " + value + ") has been removed");
+    			size--;
     			return;
     		}
     		
@@ -149,4 +163,23 @@ public class List
     	}
     	System.out.println("cannot remove: there is no student with the specified id");
     }
+    
+    /**
+     * Removes the first element from the list and returns its value
+     * @return the value of the first element of the list
+     * @throws EmptyListException if the list is empty
+     */
+    public int removeFirst()
+    {
+    	if(head == null)
+    	{
+    		throw new EmptyListException("No such element");
+    	}
+    	else
+    	{
+    		int value = head.getValue();
+    		setHead(head.getNext());
+    		return value;
+    	}
+    }    
 }
