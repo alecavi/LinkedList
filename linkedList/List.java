@@ -1,4 +1,6 @@
-package main;
+package linkedList;
+
+import linkedList.ListNode;
 
 /**
  * A class representing a linked list
@@ -48,18 +50,13 @@ public class List
     }
 
     /**
-     * Add a new node to the start of the list which will contain
-     * the data provided (a student ID and mark).
+     * Add a new node containing the specified value to the start of the list
      * 
-     * @param id The id of the student to be placed in this list node
-     * @param mark The student's mark 
-     * @throws IllegalArgumentException if {@code id} is null
+     * @param value The value stored in this list node 
      */
-    public void addToList(String id, int mark)
+    public void addToList(int value)
     {
-    	if(id == null) throw new IllegalArgumentException("Can't add null ids");
-    	
-        ListNode node = new ListNode(id, mark);
+        ListNode node = new ListNode(value);
         if(head == null)
         {
         	head = node;
@@ -73,7 +70,7 @@ public class List
     }
 
     /**
-     * Display the ID and mark of every node in the list, or an error message if the list is empty.
+     * Display the value of every node in the list, or an error message if the list is empty.
      */
     public void print()
     {
@@ -86,49 +83,49 @@ public class List
     	ListNode currentNode = head;
     	while(currentNode != null)
     	{
-    		System.out.println("ID: " + currentNode.getID() + ", mark: " + currentNode.getMark());
+    		System.out.println("value: " + currentNode.getValue());
     		currentNode = currentNode.getNext();
     	}
     }
     
     /**
-     * Display the mark associated with the specified ID, or an error message if there is no such ID.
-     * Note that if there are multiple elements with the same ID, this function will return the first - 
+     * Search the list for a node with the specified value, and display it if it is found.
+     * Note that if there are multiple nodes with the same value, this function will return the first - 
      * the one that was added last
-     * @param id the id of the student to remove
+     * @param id
      */
-    public void findByID(String id)
+    public void find(int value)
     {
     	if(head == null)
     	{
-    		System.out.println("The list is empty");
+    		System.out.println("Cannot find: the list is empty");
     		return;
     	}
     	
     	ListNode currentNode = head;
     	while(currentNode != null)
     	{
-    		if(currentNode.getID().equals(id))
+    		if(currentNode.getValue() == value)
     		{
-    			System.out.println(currentNode.getMark());
+    			System.out.println("found: " + currentNode.getValue());
     			return;
     		}
     		currentNode = currentNode.getNext();
     	}
-    	System.out.println("There is no student with the specified id");
+    	System.out.println("no student with the specified id was found");
     }
     
     /**
-     * Search the list for the student associated with the specified ID, removes it, and prints a message
-     * representing success, or an error message if there is no such ID. Note that if there are multiple
-     * elements with the same ID, this function will remove the first - the one that was added last 
+     * Search the list for a node with the specified value, removes it, and prints a message
+     * representing success, or an error message if there is no such node. Note that if there are multiple
+     * nodes with the same value, this function will remove the first - the one that was added last 
      * @param id the id of the student to remove
      */
-    public void removeByID(String id)
+    public void remove(int value)
     {
     	if(head == null)
     	{
-    		System.out.println("The list is empty");
+    		System.out.println("Cannot remove: the list is empty");
     		return;
     	}
     	
@@ -136,52 +133,20 @@ public class List
     	ListNode currentNode = head;
     	while(currentNode != null)
     	{
-    		if(currentNode.getID().equals(id))
+    		if(currentNode.getValue() == value)
     		{
     			if(lastNode != null) 
     				lastNode.setNext(currentNode.getNext());
     			else //lastNode will be null if the head of the list has the specified id
     				head = head.getNext();
     			
-    			System.out.println("The specified node has been removed");
+    			System.out.println("The specified node (value: " + value + ") has been removed");
     			return;
     		}
     		
     		lastNode = currentNode;
     		currentNode = currentNode.getNext();
     	}
-    	System.out.println("There is no student with the specified id");
+    	System.out.println("cannot remove: there is no student with the specified id");
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

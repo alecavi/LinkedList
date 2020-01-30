@@ -1,7 +1,4 @@
-/**
- * 
- */
-package main;
+package linkedList;
 
 import java.util.Scanner;
 
@@ -61,19 +58,17 @@ public class Tester
 	}
 	
 	/**
-	 * Prompts the user for a valid ID and mark, and adds them to the list
+	 * Prompts the user to input an integer until a valid int is provided
+	 * @return
 	 */
-	private void addToList()
+	private int promptForInt()
 	{
-		System.out.println("Input the ID of the student to add");
-		String id = scanner.nextLine();
-		System.out.println("Input the mark of the student to add");
-		int mark;
+		int value;
 		while(true)
 		{
 			if(scanner.hasNextInt())
 			{
-				mark = scanner.nextInt();
+				value = scanner.nextInt();
 				scanner.nextLine(); //nextInt does not consume the newline chars added by pressing enter
 				break;
 			}
@@ -85,7 +80,16 @@ public class Tester
 				//unless we remove it.
 			}
 		}
-		list.addToList(id, mark);
+		return value;
+	}
+	
+	/**
+	 * Prompts the user for a valid value and adds it to the list
+	 */
+	private void addToList()
+	{
+		System.out.println("Input the value to add");
+		list.addToList(promptForInt());
 	}
 
 	/**
@@ -97,25 +101,23 @@ public class Tester
 	}
 	
 	/**
-	 * Prompts the user for an ID, then attempts to find the corresponding student in the list and
+	 * Prompts the user for a value, then attempts to find a node storing that value in the list and
 	 * prints the result
 	 */
 	private void findInList()
 	{
-		System.out.println("Input the ID of the student to add");
-		String id = scanner.nextLine();
-		list.findByID(id);
+		System.out.println("Input the value to find");
+		list.find(promptForInt());
 	}
 	
 	/**
-	 * Prompts the user for an ID, then attempts to find the corresponding student in the list and
+	 * Prompts the user for a value, then attempts to find a node storing that value in the list and
 	 * remove it. Finally, prints a success or failure message
 	 */
 	private void removeFromList()
 	{
-		System.out.println("Input the ID of the student to add");
-		String id = scanner.nextLine();
-		list.removeByID(id);
+		System.out.println("Input the value to remove");
+		list.remove(promptForInt());
 	}
 	
 	
@@ -154,21 +156,12 @@ public class Tester
 		list.print();
 		System.out.println();
 		
-		list.addToList("a", 10);
+		list.addToList(10);
 		list.print();
 		System.out.println();
 		
-		list.addToList("b", 20);
-		list.addToList("c", -97);
-		try
-		{
-			list.addToList(null, 900);
-			System.out.println("Flow control should never reach this line");
-		}
-		catch(IllegalArgumentException e)
-		{
-			System.out.println("null IDs are not allowed");
-		}
+		list.addToList(20);
+		list.addToList(-97);
 		list.print();
 	}
 	
@@ -177,36 +170,37 @@ public class Tester
 	 */
 	private void autoTestFind()
 	{
-		List list = new List();		
-		list.addToList("a", 10);
-		list.addToList("b", 20);
-		list.addToList("c", 30);
+		List list = new List();	
+		
+		System.out.println("find:");
+		
+		list.addToList(10);
+		list.addToList(20);
+		list.addToList(30);
 		
 		System.out.println("--Initial list:");
 		list.print();
 		System.out.println();
 		
-		System.out.println("findByID");
+		System.out.println("find");
 		System.out.println("--Normal list:");
 		System.out.println("----Middle:");
-		list.findByID("b");
+		list.find(20);
 		
 		System.out.println("----Beginning:");
-		list.findByID("c");
+		list.find(30);
 		
 		System.out.println("----End:");
-		list.findByID("a");
+		list.find(10);
 		
 		System.out.println("--Absent:");
-		list.findByID("dbnauibdiu");
-		
-		System.out.println("--Null ID:");
-		list.findByID(null);
+		list.find(9991234);
+
 		System.out.println();
 		
 		System.out.println("--Empty list");
 		List emptyList = new List();
-		emptyList.findByID("This list is empty. Any ID will do");		
+		emptyList.find(0);
 	}
 
 	/**
@@ -216,11 +210,11 @@ public class Tester
 	{
 		List list = new List();
 		
-		System.out.println("removeByID");
+		System.out.println("remove:");
 		
-		list.addToList("a", 10);
-		list.addToList("b", 20);
-		list.addToList("c", 30);
+		list.addToList(10);
+		list.addToList(20);
+		list.addToList(30);
 		
 		System.out.println("--Initial list:");
 		list.print();
@@ -228,32 +222,29 @@ public class Tester
 		
 		System.out.println("--Normal list:");
 		System.out.println("----Middle:");
-		list.removeByID("b");
+		list.remove(20);
 		list.print();
 		System.out.println();
 		
 		System.out.println("----Beginning:");
-		list.removeByID("c");
+		list.remove(30);
 		list.print();
 		System.out.println();
 		
 		System.out.println("----End:");
-		list.removeByID("a");
+		list.remove(10);
 		list.print();
 		System.out.println();
 		
 		System.out.println("--Absent:");
-		list.removeByID("niudnbauebdiub");
+		list.remove(17312377);
 		list.print();
 		System.out.println();
 		
-		System.out.println("--Null ID:");
-		list.removeByID(null);
-		list.print();
 		System.out.println();
 		
 		System.out.println("--Empty list");
 		List emptyList = new List();
-		emptyList.removeByID("This list is empty. Any ID will do");
+		emptyList.remove(1341341);
 	}
 }

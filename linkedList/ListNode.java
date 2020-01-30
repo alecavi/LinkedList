@@ -1,4 +1,4 @@
-package main;
+package linkedList;
 
 /**
  * A linked list node, storing an id and a mark
@@ -9,18 +9,15 @@ package main;
 public class ListNode    
 {
     // fields to store the data being held in this list node (a student ID and mark)
-    private String id;
-    private int mark;
+    private int value;
     private ListNode next;
 
     /**
      * Default constructor. Initialise fields to default values
      */
     public ListNode()
-    {
-        // set id and mark to default / empty values 
-        id = "";
-        mark = 0;
+    { 
+        value = 0;
         next = null;
     }
 
@@ -30,32 +27,21 @@ public class ListNode
      * @param id The id for the student
      * @param mark The student's mark
      */
-    public ListNode(String id, int mark)
+    public ListNode(int value)
     {
         // set id and mark to values provided
-        this.id = id;
-        this.mark = mark;
+        this.value = value;
         this.next = null;
     }
 
     /**
-     * Get the student ID contained in this list node
+     * Get the value contained in this list node
      * 
-     * @return The student's ID as a String
+     * @return The value
      */
-    public String getID()
+    public int getValue()
     {
-        return id;
-    }
-
-    /**
-     * Get the student mark contained in this list node
-     * 
-     * @return The student mark
-     */
-    public int getMark()
-    {
-        return mark;
+        return value;
     }
 
     /**
@@ -80,42 +66,4 @@ public class ListNode
     {
     	this.next = next;
     }
-
-    /**
-     * Return a string containing summary data from this node
-     * 
-     * @return A String containing a summary of the data contained in this list node
-     */
-    public String getSummaryData()
-    {
-        String data;		
-        data = "Student with ID " + id + " obtained the following mark: " + mark + "%";		
-        return data;
-    }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
