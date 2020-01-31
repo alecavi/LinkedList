@@ -1,6 +1,3 @@
-/**
- * 
- */
 package stack;
 
 import linkedList.List;
@@ -14,6 +11,11 @@ import linkedList.List;
 public class Stack
 {
 	private List list;
+	
+	public Stack()
+	{
+		this.list = new List();
+	}
 	
 	/**
 	 * Returns whether the stack has 0 elements
@@ -36,7 +38,9 @@ public class Stack
 	/**
 	 * Pops the top value from the stack
 	 * @return the value that was removed from the top of the stack
+	 * @throws EmptyListException if the stack is empty
 	 */
+	//TODO: throw a more specific exception
 	public int pop()
 	{
 		return list.removeFirst();
