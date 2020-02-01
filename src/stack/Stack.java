@@ -1,5 +1,6 @@
 package stack;
 
+import linkedList.EmptyListException;
 import linkedList.List;
 
 /**
@@ -38,11 +39,63 @@ public class Stack
 	/**
 	 * Pops the top value from the stack
 	 * @return the value that was removed from the top of the stack
-	 * @throws EmptyListException if the stack is empty
+	 * @throws EmptyStackException if the stack is empty
 	 */
-	//TODO: throw a more specific exception
 	public int pop()
 	{
-		return list.removeFirst();
+		try
+		{
+			return list.removeFirst();
+		}
+		catch(EmptyListException e)
+		{
+			throw new EmptyStackException("Stack is empty", e);
+		}
+	}
+	
+	/**
+	 * Clears the stack, deleting all elements
+	 */
+	public void clear()
+	{
+		list.clear();
 	}
 }
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

@@ -179,7 +179,17 @@ public class List
     	{
     		int value = head.getValue();
     		setHead(head.getNext());
+    		size--;
     		return value;
     	}
-    }    
+    }  
+    
+    /**
+     * Clears the list, deleting all elements
+     */
+    public void clear()
+    {
+    	size = 0;
+    	head = null;
+    }
 }

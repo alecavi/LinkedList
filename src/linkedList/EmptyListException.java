@@ -16,8 +16,8 @@ public class EmptyListException extends RuntimeException
      * cause is not initialized, and may subsequently be initialized by
      * a call to {@link #initCause}.
      *
-     * @param   message   the detail message. The detail message is saved for
-     *          later retrieval by the {@link #getMessage()} method.
+     * @param message the detail message. The detail message is saved for
+     * later retrieval by the {@link #getMessage()} method.
      */
 	public EmptyListException(String message)
 	{
