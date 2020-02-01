@@ -5,7 +5,7 @@ import java.util.Scanner;
 /**
  * An automated testing class for the linked list.
  * 
- * @author acavicchioli
+ * @author Alessandro Cavicchioli
  * @version 1.0
  */
 public class Tester
