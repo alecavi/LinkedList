@@ -3,7 +3,6 @@ package rpn;
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.NoSuchElementException;
-import java.util.Scanner;
 
 import stack.EmptyStackException;
 import stack.Stack;
@@ -19,32 +18,24 @@ public class RpnCalculator
 	private String tokenSeparator = " ";
 	private final String operators = "+-*/";
 	
-	public static void main(String[] args)
+	/**
+	 * Returns the token separator - the string used to separate operands or operators
+	 * @return the token separator
+	 */
+	public String getTokenSeparator() 
 	{
-		Scanner scanner = new Scanner(System.in);
-		
-		RpnCalculator calculator = new RpnCalculator();
-		System.out.println("Input an RPN expression");
-		String expression = scanner.nextLine();
-		
-		System.out.println(calculator.infixEquivalent(expression));
-		
-		/*
-		if(!calculator.validate(expression))
-		{
-			System.out.println("Invalid expression");
-			scanner.close();
-			return;
-		}
-		*/
-		
-		//System.out.println("Result = " +  calculator.calculate(expression));
-		
-		scanner.close();
+		return tokenSeparator;
 	}
-	
-	
-	
+
+	/**
+	 * Sets the token separator - the string used to separate operands or operators
+	 * @param token separator the token separator to set
+	 */
+	public void setTokenSeparator(String tokenSeparator) 
+	{
+		this.tokenSeparator = tokenSeparator;
+	}
+
 	/**
 	 * Calculates the result of the passed RPN expression.
 	 * 
