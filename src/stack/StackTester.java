@@ -42,6 +42,12 @@ public class StackTester
 		stack.push(10);
 		System.out.println("--Non-empty stack");
 		System.out.println(stack.isEmpty() ? "Empty" : "Not empty");
+		
+		stack.push(20);
+		stack.push(30);
+		stack.clear();
+		System.out.println("--After clearing the stack");
+		System.out.println(stack.isEmpty() ? "Empty" : "Not empty");
 	}
 	
 	/**
@@ -63,6 +69,10 @@ public class StackTester
 		
 		stack.pop();
 		System.out.println("--After removing one element");
+		System.out.println(stack.size());
+		
+		stack.clear();
+		System.out.println("--After clearing the stack");
 		System.out.println(stack.size());
 	}
 	
