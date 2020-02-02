@@ -42,9 +42,12 @@ public class List
      * 
      * @param  newHead A reference to a ListNode object which will be
      *                 the head of the list. 
-     *                 
+     *
+     * <br>
      * NOTE: if a list already exists, the existing listing will be 
      * lost since the head is being assigned to something new.
+     * <br>
+     * NOTE: the size of the list will be invalidated permanently
      */
     public void setHead(ListNode newHead)
     {
