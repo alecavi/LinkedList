@@ -19,7 +19,7 @@ public class Tester
 	/**
 	 * main menu for the tester
 	 */
-	public void test()
+	public void menu()
 	{
 		printInstructions();
 		while(true)
