@@ -1,6 +1,9 @@
-package linkedList;
+package main;
 
 import java.util.Scanner;
+
+import linkedList.EmptyListException;
+import linkedList.List;
 
 /**
  * An automated testing class for the linked list.
@@ -23,133 +26,7 @@ public class Tester
 				+ "\"find\" to find a student in the list, \"delete\" to delete a student from the list, "
 				+ "\"removeFirst\" to remove the first element from the list, \"size\" to print the size of the list"
 				+ " \"test\" to run the automated tests, or \"exit\" to exit");
-		boolean exit = false;
-		while(!exit)
-		{
-			System.out.println("Input a command");
-			String input = scanner.nextLine();
-			switch(input.toLowerCase())
-			{
-			case "add":
-				tester.addToList();
-				break;
-			case "print":
-				tester.printList();
-				break;
-			case "find":
-				tester.findInList();
-				break;
-			case "delete":
-				tester.deleteFromList();
-				break;
-			case "removefirst":
-				tester.removeFirstFromList();
-				break;
-			case "test":
-				tester.process();
-				break;
-			case "size":
-				tester.printSize();
-				break;
-			case "exit":
-				exit = true;
-				break;
-			default:
-				System.out.println("Command not recognised");
-				System.out.println("Input \"add\" to add a student to the list, \"print\" to print the list, "
-						+ "\"find\" to find a student in the list, \"remove\" to remove a student from the list, "
-						+ "\"test\" to run the automated tests, or \"exit\" to exit");
-				break;
-			}
-		}
 	}
-	
-	/**
-	 * Prompts the user to input an integer until a valid int is provided
-	 * @return
-	 */
-	private int promptForInt()
-	{
-		int value;
-		while(true)
-		{
-			if(scanner.hasNextInt())
-			{
-				value = scanner.nextInt();
-				scanner.nextLine(); //nextInt does not consume the newline chars added by pressing enter
-				break;
-			}
-			else 
-			{
-				System.out.println("Please input an integer mark");
-				scanner.nextLine(); 
-				//If the first input is not an int then hasNextInt won't advance past it and this loop will become infinite, 
-				//unless we remove it.
-			}
-		}
-		return value;
-	}
-	
-	/**
-	 * Prompts the user for a valid value and adds it to the list
-	 */
-	private void addToList()
-	{
-		System.out.println("Input the value to add");
-		list.addToList(promptForInt());
-	}
-
-	/**
-	 * Prints the list as it is currently
-	 */
-	private void printList()
-	{
-		list.print();
-	}
-	
-	/**
-	 * Prompts the user for a value, then attempts to find a node storing that value in the list and
-	 * prints the result
-	 */
-	private void findInList()
-	{
-		System.out.println("Input the value to find");
-		list.find(promptForInt());
-	}
-	
-	/**
-	 * Prompts the user for a value, then attempts to find a node storing that value in the list and
-	 * delete it. Finally, prints a success or failure message
-	 */
-	private void deleteFromList()
-	{
-		System.out.println("Input the value to remove");
-		list.delete(promptForInt());
-	}
-	
-	/**
-	 * Removes the first element from the list and prints it
-	 */
-	private void removeFirstFromList()
-	{
-		try
-		{
-			System.out.println("The first element has been removed. Value: " + list.removeFirst());
-		}
-		catch(EmptyListException e)
-		{
-			System.out.println("The list is empty");
-		}
-	}
-	
-	/**
-	 * Prints the size of the list
-	 */
-	private void printSize()
-	{
-		System.out.println(list.size());
-	}
-	
 	
 	/**
 	 * Sets up for testing - initialise fields and prepare them to be used
