@@ -26,6 +26,8 @@ public class StackTester
 		System.out.println();
 		
 		testPush();
+		System.out.println();
+		System.out.println();
 	}
 	
 	/**
