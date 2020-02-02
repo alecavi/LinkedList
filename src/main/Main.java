@@ -4,6 +4,12 @@ import java.util.Scanner;
 
 import rpn.RpnCalculator;
 
+/**
+ * A class containing the main() method and the main menu
+ * 
+ * @author Alessandro Cavicchioli
+ * @version 1.0
+ */
 public class Main 
 {
 	public static final Scanner scanner = new Scanner(System.in);

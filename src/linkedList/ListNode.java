@@ -24,8 +24,7 @@ public class ListNode
     /**
      * Alternative constructor. Set fields to given values.
      *
-     * @param id The id for the student
-     * @param mark The student's mark
+     * @param value The value to set
      */
     public ListNode(int value)
     {

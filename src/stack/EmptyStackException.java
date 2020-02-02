@@ -1,5 +1,10 @@
 package stack;
 
+/**
+ * An exception thrown by a stack when attempting to return a nonexistent element
+ * @author Alessandro Cavicchioli
+ * @version 1.0
+ */
 public class EmptyStackException extends RuntimeException 
 {
 	private static final long serialVersionUID = 1L;

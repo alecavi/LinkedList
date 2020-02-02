@@ -108,7 +108,7 @@ public class List
      * Search the list for a node with the specified value, and display it if it is found.
      * Note that if there are multiple nodes with the same value, this function will return the first - 
      * the one that was added last
-     * @param id
+     * @param value the value to find
      */
     public void find(int value)
     {
@@ -135,7 +135,7 @@ public class List
      * Search the list for a node with the specified value, removes it, and prints a message
      * representing success, or an error message if there is no such node. Note that if there are multiple
      * nodes with the same value, this function will remove the first - the one that was added last 
-     * @param id the id of the student to remove
+     * @param value the value to remove
      */
     public void delete(int value)
     {

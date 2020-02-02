@@ -28,7 +28,7 @@ public class RpnCalculator
 
 	/**
 	 * Sets the token separator - the string used to separate operands or operators
-	 * @param token separator the token separator to set
+	 * @param tokenSeparator the token separator to set
 	 */
 	public void setTokenSeparator(String tokenSeparator) 
 	{
@@ -93,7 +93,7 @@ public class RpnCalculator
 	
 	/**
 	 * Validates the RPN expression passed as the argument, assuming all operators are binary
-	 * @param tokens the RPN expression to validate
+	 * @param expression the RPN expression to validate
 	 * @return {@code true} if the expression is valid, {@code false} otherwise
 	 */
 	public boolean validate(String expression)
