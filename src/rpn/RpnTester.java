@@ -90,6 +90,9 @@ public class RpnTester
 		System.out.println();
 	}
 	
+	/**
+	 * Automatically tests validating RPN expressions
+	 */
 	private void testValidate()
 	{
 		System.out.println("Validate:");
@@ -116,6 +119,9 @@ public class RpnTester
 		System.out.println();
 	}
 	
+	/**
+	 * Automatically tests converting RPN expressions to an infix equivalent
+	 */
 	private void testInfixEquivalent()
 	{
 		System.out.println("infixEquivalent:");
@@ -166,6 +172,9 @@ public class RpnTester
 		System.out.println();
 	}
 	
+	/**
+	 * Automatically tests getting and setting the token separator
+	 */
 	private void testTokenSeparator()
 	{
 		System.out.println("getTokenSeparator, setTokenSeparator:");
