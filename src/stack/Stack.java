@@ -19,15 +19,6 @@ public class Stack
 	}
 	
 	/**
-	 * Returns whether the stack has 0 elements
-	 * @return {@code true} if the stack is empty, {@code false} otherwise
-	 */
-	public boolean isEmpty()
-	{
-		return list.size() == 0;
-	}
-	
-	/**
 	 * Pushes the specified value on the stack
 	 * @param value the value to push
 	 */
@@ -59,6 +50,24 @@ public class Stack
 	public void clear()
 	{
 		list.clear();
+	}
+
+	/**
+	 * Returns whether the stack is empty - i.e. whether it has 0 elements
+	 * @return {@code true} if the stack is empty, {@code false} otherwise
+	 */
+	public boolean isEmpty()
+	{
+		return list.size() == 0;
+	}
+	
+	/**
+	 * Returns the size of the stack
+	 * @return the size of the stack
+	 */
+	public int size()
+	{
+		return list.size();
 	}
 }
 
