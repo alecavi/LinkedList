@@ -6,10 +6,10 @@ import rpn.RpnCalculator;
 
 public class Main 
 {
+	public static final Scanner scanner = new Scanner(System.in);
+	
 	public static void main(String[] args) 
 	{
-		Scanner scanner = new Scanner(System.in);
-		
 		RpnCalculator calculator = new RpnCalculator();
 		
 		System.out.println("Input a postfix expression");
