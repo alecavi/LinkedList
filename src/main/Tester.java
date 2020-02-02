@@ -30,12 +30,15 @@ public class Tester
 			{
 			case "list":
 				listTester.process();
+				printInstructions();
 				break;
 			case "stack":
 				stackTester.process();
+				printInstructions();
 				break;
 			case "rpn":
 				rpnTester.process();
+				printInstructions();
 				break;
 			case "back":
 				return;
