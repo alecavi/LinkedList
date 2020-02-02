@@ -1,7 +1,16 @@
 package stack;
 
+/**
+ * An automated testing class for the stack
+ * 
+ * @author Alessandro Cavicchioli
+ * @version 1.0
+ */
 public class StackTester
 {
+	/**
+	 * Performs the automated testing process
+	 */
 	public void process()
 	{
 		testEmpty();
@@ -19,6 +28,9 @@ public class StackTester
 		testPush();
 	}
 	
+	/**
+	 * Automatically tests whether the stack is correctly deemed to be empty
+	 */
 	private void testEmpty()
 	{
 		Stack stack = new Stack();
@@ -32,6 +44,9 @@ public class StackTester
 		System.out.println(stack.isEmpty() ? "Empty" : "Not empty");
 	}
 	
+	/**
+	 * Automatically tests whether the size of the stack varies correctly
+	 */
 	private void testSize()
 	{
 		Stack stack = new Stack();
@@ -51,6 +66,9 @@ public class StackTester
 		System.out.println(stack.size());
 	}
 	
+	/**
+	 * Automatically tests popping elements from the stack
+	 */
 	private void testPop()
 	{
 		Stack stack = new Stack();
@@ -72,6 +90,9 @@ public class StackTester
 		System.out.println(stack.pop());
 	}
 	
+	/**
+	 * Automatically tests pushing elements on the stack
+	 */
 	private void testPush()
 	{
 		Stack stack = new Stack();
