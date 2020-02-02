@@ -14,7 +14,6 @@ import stack.Stack;
  */
 public class RpnCalculator 
 {
-	private Stack stack = new Stack();
 	private String tokenSeparator = " ";
 	private final String operators = "+-*/";
 	
@@ -45,6 +44,8 @@ public class RpnCalculator
 	 */
 	public int calculate(String expression)
 	{
+		Stack stack = new Stack();
+		
 		String[] tokens = expression.split(tokenSeparator);
 		for(String token : tokens)
 		{
@@ -55,23 +56,22 @@ public class RpnCalculator
 					switch(token)
 					{
 					case "+":
-						add();
+						add(stack);
 						break;
 					case "-":
-						subtract();
+						subtract(stack);
 						break;
 					case "*":
-						multiply();
+						multiply(stack);
 						break;
 					case "/":
-						divide();
+						divide(stack);
 						break;
 					default:
 					}
 				}
 				catch(EmptyStackException e)
 				{
-					stack.clear();
 					throw new IllegalArgumentException("Invalid RPN expression: not enough operands", e);
 				}
 			}
@@ -82,7 +82,6 @@ public class RpnCalculator
 			}
 			else
 			{
-				stack.clear();
 				throw new IllegalArgumentException("Invalid RPN expression: illegal token");
 			}
 		}
@@ -169,9 +168,10 @@ public class RpnCalculator
 
 	/**
 	 * Pops the top two numbers from the stack and adds them
+	 * @param stack the stack to use
 	 * @throws EmptyStackException if the stack does not have two elements
 	 */
-	private void add()
+	private void add(Stack stack)
 	{
 		int addend1 = stack.pop();
 		int addend2 = stack.pop();
@@ -182,9 +182,10 @@ public class RpnCalculator
 	 * Pops the top two numbers from the stack and subtracts the second from the first - 
 	 * that is, if the stack contains elements {@code A, B} where A was pushed before B,
 	 * the result will be {@code A - B}. After doing so, pushes the result
+	 * @param stack the stack to use
 	 * @throws EmptyStackException if the stack does not have two elements
 	 */
-	private void subtract()
+	private void subtract(Stack stack)
 	{
 		int subtrahend = stack.pop();
 		int minuend = stack.pop();
@@ -193,9 +194,10 @@ public class RpnCalculator
 	
 	/**
 	 * Pops the top two numbers from the stack and multiplies them
+	 * @param stack the stack to use
 	 * @throws EmptyStackException if the stack does not have two elements
 	 */
-	private void multiply()
+	private void multiply(Stack stack)
 	{
 		int factor1 = stack.pop();
 		int factor2 = stack.pop();
@@ -206,9 +208,10 @@ public class RpnCalculator
 	 * Pops the top two numbers from the stack and divides the second by the first - 
 	 * that is, if the stack contains elements {@code A, B} where A was pushed before B,
 	 * the result will be {@code A / B}. After doing so, rounds the result and pushes it
+	 * @param stack the stack to use
 	 * @throws EmptyStackException if the stack does not have two elements
 	 */
-	private void divide()
+	private void divide(Stack stack)
 	{
 		int divisor = stack.pop();
 		int dividend = stack.pop();
